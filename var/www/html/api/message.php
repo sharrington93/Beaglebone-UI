@@ -1,6 +1,6 @@
-<?php
-// Establish connection to MySQL database
-$con = mysqli_connect("localhost","root","buckeyes","test");
+<?php // Establish connection to MySQL database $con = 
+
+$con = mysqli_connect("localhost","root","buckeyes","westest");
 // Check the connection - not really necessary, but fuck it why not
 if (mysqli_connect_errno()) {
 	
@@ -9,16 +9,29 @@ if (mysqli_connect_errno()) {
 }
 // Take in the desired messageName
 $requestedMessage = $_GET['messageName'];
-echo $requestedMessage;
-// Retrieve the desired attributes from the MySQL database 
-$result = mysql_query($con, "SELECT Value 
-			     FROM Messages 
-			     WHERE messageName = " + $requestedMessage  +  "
-			     ORDER BY time 
-			     ASC LIMIT 1");
-$format = sprintf($requestedMessage);
+//echo $requestedMessage;
+
+// Retrieve the desired attributes from the MySQL database
+$sql = "SELECT Value
+	FROM Messages
+	WHERE MsgName = \"$requestedMessage\"
+	ORDER BY time ASC
+	LIMIT 1"; 
+$result = mysqli_query($con ,$sql);
+
+$val = mysqli_fetch_row( $result )[0];
+
+$reply = array( $requestedMessage => $val,
+				'status' => 'fail',
+				'unit' => 'fun' );
+				
+echo json_encode($reply);
+
 // Get the number of rows in the database
-$rowcount = mysqli_num_rows($result);
+//$row = mysqli_fetch_array($result);
+//echo $row;
+//$rowcount = mysqli_num_rows($result);
+//echo "\nRow: $rowcount";
 /*
 // Search through database
 while($x <= $rowcount) {
@@ -34,10 +47,9 @@ while($x <= $rowcount) {
 	$x++;
 }
 */
-$row = mysqli_fetch_row($result);
-print_r($row);
+
 // Free the result set
-mysqli_free_result($result);
+mysql_free_result($result);
 // Close the connection
-mysqli_close($con);
+mysql_close($con);
 ?>

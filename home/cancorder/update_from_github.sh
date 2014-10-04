@@ -4,6 +4,8 @@
 
 mkdir -p ~/tmp
 cd ~/tmp
+rm master.zip
+rm -R CANCorder-UI-master
 wget https://github.com/BuckeyeCurrent/CANCorder-UI/archive/master.zip
 unzip CANCorder-UI-master.zip
 sudo rsync -a CANCorder-UI-master/ /
