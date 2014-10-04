@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Post-Race</title>
+
+    <!-- Bootstrap -->
+    <link href="m_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="m_assets/css/m_styles.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<div class="alert alert-info alert-hv" role="alert">Bike is HV!</div>
+  	<h2>Powertrain status</h2>
+  	<div class="container">
+  		<!-- motor controller -->
+  		<div class="row system">
+  			<div class="col-xs-2 system-icon-container">
+  				<div class="row">
+  					<div class="col-xs-3 value-label-vertical rotate">max</div>
+  					<div class="col-xs-9 postrun-value">127.0</div>
+  				</div>
+  				<div class="row">
+  					<div class="col-xs-3 value-label-vertical rotate">avg</div>
+  					<div class="col-xs-9 postrun-value">127.0</div>
+  				</div>
+  			</div>
+			<div class="col-xs-8 system-plot">
+				<canvas id="VehicleVelocity" width="253px" height="100"></canvas>
+			</div>
+  		</div>
+  		
+  	</div>
+
+	
+    <script src="m_assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="m_assets/js/live_charts.js"></script>
+	<script type="text/javascript" src="m_assets/js/smoothie.js"></script>
+    <script src="m_assets/js/bootstrap.min.js"></script>
+    <script src="m_assets/js/m_status.js"></script>
+  </body>
+</html>
