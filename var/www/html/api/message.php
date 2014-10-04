@@ -25,6 +25,9 @@ $reply = array( $requestedMessage => $val,
 				'status' => 'fail',
 				'unit' => 'fun' );
 				
+// Required for security checks when running mobile interface cross-domain
+header('Access-Control-Allow-Origin: *');			
+	
 echo json_encode($reply);
 
 // Get the number of rows in the database
