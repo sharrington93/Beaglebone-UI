@@ -1,0 +1,62 @@
+/*!
+ * CSS for mobile interface
+ *
+ */
+
+.system-status-indicator {
+  background-color: green;
+  max-width: 5px;
+  padding: 0;
+  height: 80px;
+}
+
+/* 
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters [class^="col-"],
+.row.no-gutters [class*=" col-"]{
+  padding-right: 0;
+  padding-left: 0;
+}
+ */
+
+.container.full-width{
+	padding: 0;
+}
+
+.row.system{
+	border-top: 1px black solid;
+}
+
+/* System icon and info blocks */
+.system-icon-container{
+	margin-top: 7px;
+	margin-bottom: 3px;
+}
+.system-title{
+	font-size: x-small;
+	text-align: left;
+}
+
+/* System status */
+.system-info{
+	margin-top: 7px;
+	font-size: small;
+	line-height: 130%;
+}
+
+.system-variable-name{
+	font-weight: bold;
+	display: inline;
+}
+
+/* Alerts */
+.alert-hv{
+	text-align: center;
+	font-size: x-large;
+	font-weight: 500;
+	padding-top: 0;
+	padding-bottom: 0;
+}
