@@ -4,6 +4,17 @@ import sys
 import time
 import datetime
 
+#Define tic-tok function
+def tic():
+    #Homemade version of matlab tic and toc functions
+    global startTime_for_tictoc
+    startTime_for_tictoc = time.time()
+
+def toc():
+    if 'startTime_for_tictoc' in globals():
+        return(time.time() - startTime_for_tictoc)
+    
+
 
 #load data file, change path for beaglebone
 file = "C:\Users\wes\Documents\BuckeyeCurrent\CANCorder-UI\NormalData.csv"
@@ -65,6 +76,7 @@ with con:
     cur.execute("CREATE TABLE Messages(time datetime(6), MsgName TEXT, Value float)")
 
     #insert values into table
+    tic()
     for i in range(0,500):
         cur.executemany('''INSERT INTO Messages(time, MsgName, Value)
                         VALUES(%s,%s,%s)''',
@@ -81,5 +93,8 @@ with con:
         (str(datetime.datetime.now()),'MainCont',str(MainCont[i])),
         (str(datetime.datetime.now()),'EStop',str(EStop[i]))
         ])
-        #time.sleep(.5)
+        #code to force a timeout error
+        if(toc() >= 120):  #force aditional sleep after certain time
+            time.sleep(10) #aditional sleep
+        time.sleep(.5)
 
