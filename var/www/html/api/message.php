@@ -21,7 +21,8 @@ $result = mysqli_query($con ,$sql);
 
 $val = mysqli_fetch_row( $result )[0];
 
-$reply = array( $requestedMessage => $val,
+$reply = array( 'messageName' => $requestedMessage,
+				'messageValue' => $val,
 				'status' => 'fail',
 				'unit' => 'fun' );
 				
