@@ -41,13 +41,13 @@ with con:
     cur.execute("DROP TABLE IF EXISTS Example")
     
     #creates table, will not need for real script
-    cur.execute("CREATE TABLE Example(time datetime(6), voltage float)")
+    cur.execute("CREATE TABLE Example(time datetime(6), voltage float, three float)")
     
     
     for i in range(0,100):
         #insert time variable into table
-        cur.execute('INSERT INTO Example(time) VALUES (now(6))')
-        time.sleep(.5)
+        cur.execute('INSERT INTO Example(time, voltage, three) VALUES (now(6), 1, 1)')
+        #time.sleep(.5)
 
 
 toc()
