@@ -1,0 +1,7 @@
+CREATE USER 'mobile_interface'@'localhost' IDENTIFIED BY  ‘buckeyes’;
+
+GRANT SELECT , 
+INSERT ,
+
+UPDATE ,
+DELETE ON * . * TO  'mobile_interface'@'localhost' IDENTIFIED BY  ‘buckeyes’ WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
