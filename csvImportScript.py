@@ -35,13 +35,36 @@ with con:
     #establish pointer? I think that's what this does
     cur = con.cursor()
 
-    #Drop table Example if it exists
+    #Drop table Names if it exists
+    cur.execute("DROP TABLE IF EXISTS Names")
+
+    #creates table of Names
+    cur.execute("CREATE TABLE Names(MsgName TEXT, Unit TEXT)")
+
+    #occupies table Names with values
+    cur.executemany("""INSERT INTO Names(MsgName, Unit)
+                VALUES (%s,%s)""",
+                    [
+                    ('PhaseAtemp','unit'),
+                    ('BusVoltage','unit'),
+                    ('MotorId','unit'),
+                    ('MotorTemp','unit'),
+                    ('MotorVelocity','unit'),
+                    ('PackTemp','unit'),
+                    ('PackSOC','unit'),
+                    ('PackBalance','unit'),
+                    ('PrechargeCont','unit'),
+                    ('MainCont','unit'),
+                    ('EStop','unit')
+                    ])
+
+    #Drop table Messages if it exists
     cur.execute("DROP TABLE IF EXISTS Messages")
     
-    #creates table, will not need for real script
+    #creates table to be occupied with date
     cur.execute("CREATE TABLE Messages(time datetime(6), MsgName TEXT, Value float)")
 
-
+    #insert values into table
     for i in range(0,500):
         cur.executemany('''INSERT INTO Messages(time, MsgName, Value)
                         VALUES(%s,%s,%s)''',
@@ -58,5 +81,5 @@ with con:
         (str(datetime.datetime.now()),'MainCont',str(MainCont[i])),
         (str(datetime.datetime.now()),'EStop',str(EStop[i]))
         ])
-        time.sleep(.5)
+        #time.sleep(.5)
 
