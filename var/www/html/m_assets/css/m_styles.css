@@ -5,7 +5,7 @@
 
 .system-status-indicator {
   background-color: green;
-  max-width: 5px;
+  max-width: 10px;
   padding: 0;
   height: 80px;
 }
