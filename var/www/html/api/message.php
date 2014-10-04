@@ -28,11 +28,13 @@ if (mysqli_connect_errno()) {
 $requestedMessage = $_GET['messageName'];
 
 // Retrieve the desired attributes from the MySQL database 
-$result = mysql_query($con, "SELECT Value FROM Messages WHERE messageName = %s ORDER BY %f ASC LIMIT 5", ($requestedName, ));
+$result = mysql_query($con, "SELECT Value FROM Messages WHERE messageName = '%s' ORDER BY %f ASC LIMIT 1");
+$format = sprintf($requestedMessage);
 
 // Get the number of rows in the database
 $rowcount = mysqli_num_rows($result)
 
+/*
 // Search through database
 while($x <= $rowcount) {
 
@@ -49,6 +51,10 @@ while($x <= $rowcount) {
 	$x++;
 
 }
+*/
+
+$row = mysqli_fetch_row($result);
+print_r(row);
 
 // Free the result set
 mysqli_free_result($result);
