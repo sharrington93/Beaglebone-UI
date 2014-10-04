@@ -17,7 +17,7 @@ def toc():
 
 
 #load data file, change path for beaglebone
-file = "C:\Users\wes\Documents\BuckeyeCurrent\CANCorder-UI\NormalData.csv"
+file = "/home/cancorder/home/cancorder/NormalData.csv"
 
 #create matrix containing data from file
 data = np.loadtxt(file, dtype=float, delimiter=',', skiprows = 1)
@@ -78,6 +78,10 @@ with con:
     #insert values into table
     tic()
     for i in range(0,500):
+    	
+    	#import pdb; pdb.set_trace()
+    	time.sleep(.5)
+    
         cur.executemany('''INSERT INTO Messages(time, MsgName, Value)
                         VALUES(%s,%s,%s)''',
         [
@@ -93,11 +97,11 @@ with con:
         (str(datetime.datetime.now()),'MainCont',str(MainCont[i])),
         (str(datetime.datetime.now()),'EStop',str(EStop[i]))
         ])
+        
+        con.commit()
 
 
-        '''
         #code to force a timeout error
-        if(toc() >= 120):  #force aditional sleep after certain time
-            time.sleep(10) #aditional sleep
-        time.sleep(.5)
-        '''
+        #if(toc() >= 3):  #force aditional sleep after certain time
+        #    time.sleep(.5) #aditional sleep
+        #
