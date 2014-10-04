@@ -1,3 +1,24 @@
+$( document ).ready(function() {
+	serverHost = '192.168.7.35';
+	serverPort = '80';
+  	// automatically update system status
+  	
+});
+
+function updateMessage( var ){
+	// send GET request to update all status vars
+	$.get('http://' + serverHost + ':' + serverPort + '/api/message.php?messageName=' + var, 
+		function(data) { 
+		
+			varName = data.messageName;
+			value = data.messageValue;
+			status = data.status;
+			
+			$("system-variable-value#"+varName).text( value );
+		
+		} );
+}
+
 function setSystemStatus( system, status ){
 	system = system.toLowerCase();
 	switch( status ){
@@ -16,8 +37,4 @@ function setSystemStatus( system, status ){
 		default:
 			console.log("updateSystemStatus() called without a valid status");
 	}
-}
-
-function setVariableValue( variable, value ){
-	$(".system-variable-value#"+variable).text( value );
 }

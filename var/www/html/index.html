@@ -18,9 +18,16 @@
     <![endif]-->
   </head>
   <body>
-  	<div class="alert alert-info alert-hv hidden" role="alert">Bike is HV!</div>
-  	<div class="alert alert-info alert-estop hidden" role="alert">Emergency stop active</div>
-  	<div class="alert alert-danger alert-framefault" role="alert">High-voltage frame fault detected</div>
+  	<div class="alert alert-info vehicle-alert alert-hv hidden" role="alert">
+  		<span class="glyphicon glyphicon-info-sign"></span>
+  		 Bike HV circuit enabled
+  	</div>
+  	<div class="alert alert-info alert-estop vehicle-alert hidden" role="alert"><span class="glyphicon glyphicon-remove-circle"></span>
+  		 Emergency stop active</div>
+  	<div class="alert alert-danger alert-framefault vehicle-alert hidden" role="alert">
+  		<span class="glyphicon glyphicon-warning-sign"></span>
+  		High-voltage frame fault detected
+  	</div>
   	<h3>Powertrain status</h3>
   	<div class="container">
   		<!-- motor controller -->
@@ -38,19 +45,19 @@
 				<div class="col-xs-6 system-info">
 					<div id="mc_temperature">
 						<span class="system-variable-name">Temperature: </span>
-						<span class="system-variable-value" id="mc_temperature">XX</span>
+						<span class="system-variable-value" id="PhaseATemp">XX</span>
 						<span class="system-variable-value" id="mc_temperature_units"> ºC</span><br>
 					</div>
 					
 					<div id="mc_temperature">
 						<span class="system-variable-name">DC bus voltage: </span>
-						<span class="system-variable-value" id="mc_temperature">XX</span>
+						<span class="system-variable-value" id="BusVoltage">XX</span>
 						<span class="system-variable-value" id="mc_temperature_units"> V</span><br>
 					</div>
 					
 					<div id="mc_temperature">
 						<span class="system-variable-name">Phase current: </span>
-						<span class="system-variable-value" id="mc_temperature">XX</span>
+						<span class="system-variable-value" id="MotorId">XX</span>
 						<span class="system-variable-value" id="mc_temperature_units"> A</span><br>
 					</div>
 				</div>
@@ -73,20 +80,14 @@
 				<div class="col-xs-6 system-info">
 					<div id="mc_temperature">
 						<span class="system-variable-name">Temperature: </span>
-						<span class="system-variable-value" id="mc_temperature">XX</span>
-						<span class="system-variable-value" id="mc_temperature_units"> ºC</span><br>
+						<span class="system-variable-value" id="MotorTemp">XX</span>
+						<span class="system-variable-value" id="MotorTemp_units"> ºC</span><br>
 					</div>
 					
 					<div id="mc_temperature">
-						<span class="system-variable-name">DC bus voltage: </span>
-						<span class="system-variable-value" id="mc_temperature">XX</span>
-						<span class="system-variable-value" id="mc_temperature_units"> V</span><br>
-					</div>
-					
-					<div id="mc_temperature">
-						<span class="system-variable-name">Phase current: </span>
-						<span class="system-variable-value" id="mc_temperature">XX</span>
-						<span class="system-variable-value" id="mc_temperature_units"> A</span><br>
+						<span class="system-variable-name">Motor speed: </span>
+						<span class="system-variable-value" id="MotorVelocity">XX</span>
+						<span class="system-variable-value" id="mc_temperature_units"> rpm</span><br>
 					</div>
 				</div>
 				<div class="col-xs-1 pull-right system-status-indicator" id="motor">
@@ -108,20 +109,20 @@
 				<div class="col-xs-6 system-info">
 					<div id="pack_temperature">
 						<span class="system-variable-name">Temperature: </span>
-						<span class="system-variable-value" id="pack_temperature">XX</span>
+						<span class="system-variable-value" id="PackTemp">XX</span>
 						<span class="system-variable-value" id="pack_temperature_units"> ºC</span><br>
 					</div>
 					
 					<div id="pack_soc">
 						<span class="system-variable-name">Pack charge: </span>
-						<span class="system-variable-value" id="pack_soc">XX</span>
-						<span class="system-variable-value" id="pack_soc_units"> %</span><br>
+						<span class="system-variable-value" id="PackSOC">XX</span>
+						<span class="system-variable-value" id="PackSOC_units"> %</span><br>
 					</div>
 					
 					<div id="pack_sob">
 						<span class="system-variable-name">Balance state: </span>
-						<span class="system-variable-value" id="pack_sob">XX</span>
-						<span class="system-variable-value" id="pack_sob_units"> %</span><br>
+						<span class="system-variable-value" id="PackBalance">XX</span>
+						<span class="system-variable-value" id="PackBalance_units"> %</span><br>
 					</div>
 				</div>
 				<div class="col-xs-1 pull-right system-status-indicator" id="pack">
