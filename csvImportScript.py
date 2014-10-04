@@ -32,5 +32,9 @@ with con:
 
     for i in range(0,len(time)):
         #insert time variable into table
-        print("INSERT INTO Example(time) VALUES ("+str(time[i])+")
+        cur.execute('INSERT INTO Example(time) VALUES ('+str(time[i])+')')
+
+    
+    
+
 
