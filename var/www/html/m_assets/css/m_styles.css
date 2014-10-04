@@ -61,10 +61,10 @@
 }
 
 /* Alerts */
-.alert-hv{
+.vehicle-alert{
 	text-align: center;
-	font-size: x-large;
+	font-size: large;
 	font-weight: 500;
-	padding-top: 0;
+	padding-top: 3px;
 	padding-bottom: 0;
 }
