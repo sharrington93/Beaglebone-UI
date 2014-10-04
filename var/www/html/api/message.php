@@ -1,44 +1,42 @@
-/*
-basic structure:
-requestedMessage = $_GET['messageName'];
+<?php // Establish connection to MySQL database $con = 
 
-// open mysql link
-
-// query: SELECT value FROM table WHERE messageName = whatever ORDER BY time ASC LIMIT 5
-
-// format as JSON
-
-return
-
-*/
-
-<?php
-
-// Establish connection to MySQL database
-$con = mysqli_connect("localhost","my_user","my_password","my_db");
-
+$con = mysqli_connect("localhost","root","buckeyes","westest");
 // Check the connection - not really necessary, but fuck it why not
 if (mysqli_connect_errno()) {
 	
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	
 }
-
 // Take in the desired messageName
 $requestedMessage = $_GET['messageName'];
+//echo $requestedMessage;
 
-// Retrieve the desired attributes from the MySQL database 
-$result = mysql_query($con, "SELECT Value FROM Messages WHERE messageName = %s ORDER BY %f ASC LIMIT 5", ($requestedName, ));
+// Retrieve the desired attributes from the MySQL database
+$sql = "SELECT Value
+	FROM Messages
+	WHERE MsgName = \"$requestedMessage\"
+	ORDER BY time ASC
+	LIMIT 1"; 
+$result = mysqli_query($con ,$sql);
+
+$val = mysqli_fetch_row( $result )[0];
+
+$reply = array( $requestedMessage => $val,
+				'status' => 'fail',
+				'unit' => 'fun' );
+				
+echo json_encode($reply);
 
 // Get the number of rows in the database
-$rowcount = mysqli_num_rows($result)
-
+//$row = mysqli_fetch_array($result);
+//echo $row;
+//$rowcount = mysqli_num_rows($result);
+//echo "\nRow: $rowcount";
+/*
 // Search through database
 while($x <= $rowcount) {
-
 	// Seek to row at position x
 	mysqli_data_seek($result,$x);
-
 	// Fetch row
 	$row = mysqli_fetch_row($result);
 	
@@ -47,13 +45,11 @@ while($x <= $rowcount) {
 	
 	// Increment to next row in database
 	$x++;
-
 }
+*/
 
 // Free the result set
-mysqli_free_result($result);
-
+mysql_free_result($result);
 // Close the connection
-mysqli_close($con);
-
+mysql_close($con);
 ?>
