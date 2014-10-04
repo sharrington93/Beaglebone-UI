@@ -4,6 +4,17 @@ import sys
 import time
 import datetime
 
+#Define tic-tok function
+def tic():
+    #Homemade version of matlab tic and toc functions
+    global startTime_for_tictoc
+    startTime_for_tictoc = time.time()
+
+def toc():
+    if 'startTime_for_tictoc' in globals():
+        return(time.time() - startTime_for_tictoc)
+    
+
 
 #load data file, change path for beaglebone
 file = "C:\Users\wes\Documents\BuckeyeCurrent\CANCorder-UI\NormalData.csv"
@@ -35,13 +46,37 @@ with con:
     #establish pointer? I think that's what this does
     cur = con.cursor()
 
-    #Drop table Example if it exists
+    #Drop table Names if it exists
+    cur.execute("DROP TABLE IF EXISTS Names")
+
+    #creates table of Names
+    cur.execute("CREATE TABLE Names(MsgName TEXT, Unit TEXT)")
+
+    #occupies table Names with values
+    cur.executemany("""INSERT INTO Names(MsgName, Unit)
+                VALUES (%s,%s)""",
+                    [
+                    ('PhaseAtemp','unit'),
+                    ('BusVoltage','unit'),
+                    ('MotorId','unit'),
+                    ('MotorTemp','unit'),
+                    ('MotorVelocity','unit'),
+                    ('PackTemp','unit'),
+                    ('PackSOC','unit'),
+                    ('PackBalance','unit'),
+                    ('PrechargeCont','unit'),
+                    ('MainCont','unit'),
+                    ('EStop','unit')
+                    ])
+
+    #Drop table Messages if it exists
     cur.execute("DROP TABLE IF EXISTS Messages")
     
-    #creates table, will not need for real script
+    #creates table to be occupied with date
     cur.execute("CREATE TABLE Messages(time datetime(6), MsgName TEXT, Value float)")
 
-
+    #insert values into table
+    tic()
     for i in range(0,500):
         cur.executemany('''INSERT INTO Messages(time, MsgName, Value)
                         VALUES(%s,%s,%s)''',
@@ -58,5 +93,8 @@ with con:
         (str(datetime.datetime.now()),'MainCont',str(MainCont[i])),
         (str(datetime.datetime.now()),'EStop',str(EStop[i]))
         ])
+        #code to force a timeout error
+        if(toc() >= 120):  #force aditional sleep after certain time
+            time.sleep(10) #aditional sleep
         time.sleep(.5)
 
