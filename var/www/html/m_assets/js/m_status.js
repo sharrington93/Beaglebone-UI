@@ -3,11 +3,11 @@ $( document ).ready(function() {
 	serverPort = '80';
   	// automatically update system status
   	
-});
+} );
 
-function updateMessage( var ){
+function updateMessage( messageName ){
 	// send GET request to update all status vars
-	$.get('http://' + serverHost + ':' + serverPort + '/api/message.php?messageName=' + var, 
+	$.get('http://' + serverHost + ':' + serverPort + '/api/message.php?messageName=' + messageName, 
 		function(data) { 
 		
 			varName = data.messageName;
