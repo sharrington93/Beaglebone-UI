@@ -39,7 +39,7 @@ EStop = data[:,11]
 
 #establish connection with database
 
-con = mdb.connect('localhost','root','buckeyes','test')
+con = mdb.connect('localhost','root','buckeyes','westest')
 
 
 with con:
@@ -73,7 +73,7 @@ with con:
     cur.execute("DROP TABLE IF EXISTS Messages")
     
     #creates table to be occupied with date
-    cur.execute("CREATE TABLE Messages(time datetime(6), MsgName TEXT, Value float)")
+    cur.execute("CREATE TABLE Messages(time TEXT, MsgName TEXT, Value FLOAT)")
 
     #insert values into table
     tic()
@@ -93,8 +93,11 @@ with con:
         (str(datetime.datetime.now()),'MainCont',str(MainCont[i])),
         (str(datetime.datetime.now()),'EStop',str(EStop[i]))
         ])
+
+
+        '''
         #code to force a timeout error
         if(toc() >= 120):  #force aditional sleep after certain time
             time.sleep(10) #aditional sleep
         time.sleep(.5)
-
+        '''
