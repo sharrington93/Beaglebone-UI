@@ -1,0 +1,5 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule ^message/([^/.]+)/?$ message.php?messageName=$1 [L,NC]
+RewriteRule ^system/([^/.]+)/?$ system.php?systemName=$1 [L,NC]
