@@ -72,10 +72,12 @@ function updateAll( ){
 				status 	= data[i].messageStatus;
 	
 				$(".system-variable-value#"+varName).text( value );
+				
+				var yellow = "rgb(240, 173, 78)";
 			
 				switch( status ){
 					case "Warn":
-						$(".system-variable-name#"+varName).css( 'color', 'yellow' );
+						$(".system-variable-name#"+varName).css( 'color', yellow );
 						break;
 					
 					case "Fail":
@@ -87,7 +89,86 @@ function updateAll( ){
 						break;
 				}
 			}
-		
+			
+			// UGLY HACK FOR SYSTEM STATUS DETERMINATION
+			// motor controller
+			if( $(".system-variable-name#PhaseAtemp").css( 'color' ) 	== "rgb(255, 0, 0)" || /* red */
+				$(".system-variable-name#BusVoltage").css( 'color' ) 	== "rgb(255, 0, 0)" ||
+				$(".system-variable-name#MotorId").css( 'color' ) 		== "rgb(255, 0, 0)" ) {
+				
+				// set parent container to red
+				$("div#mc_temperature").parents(".bs-callout").removeClass("bs-callout-success");
+				$("div#mc_temperature").parents(".bs-callout").removeClass("bs-callout-warning");
+				$("div#mc_temperature").parents(".bs-callout").addClass("bs-callout-danger");
+				
+			} else if( $(".system-variable-name#PhaseAtemp").css( 'color' ) 	== yellow || /* yellow */
+				$(".system-variable-name#BusVoltage").css( 'color' ) 		== yellow ||
+				$(".system-variable-name#MotorId").css( 'color' ) 			== yellow ) {
+				
+				// set parent container to yellow
+				$("div#mc_temperature").parents(".bs-callout").removeClass("bs-callout-success");
+				$("div#mc_temperature").parents(".bs-callout").removeClass("bs-callout-danger");
+				$("div#mc_temperature").parents(".bs-callout").addClass("bs-callout-warning");
+				
+			} else {
+				
+				// set parent container to green
+				$("div#mc_temperature").parents(".bs-callout").removeClass("bs-callout-warning");
+				$("div#mc_temperature").parents(".bs-callout").removeClass("bs-callout-danger");
+				$("div#mc_temperature").parents(".bs-callout").addClass("bs-callout-success");
+			}
+			
+			// motor
+			if( $(".system-variable-name#MotorTemp").css( 'color' ) 	== "rgb(255, 0, 0)" || /* red */
+				$(".system-variable-name#MotorVelocity").css( 'color' ) == "rgb(255, 0, 0)" ) {
+				
+				// set parent container to red
+				$("div#motor_MotorTemp").parents(".bs-callout").removeClass("bs-callout-success");
+				$("div#motor_MotorTemp").parents(".bs-callout").removeClass("bs-callout-warning");
+				$("div#motor_MotorTemp").parents(".bs-callout").addClass("bs-callout-danger");
+				
+			} else if( $(".system-variable-name#MotorTemp").css( 'color' ) 	== yellow || /* yellow */
+				$(".system-variable-name#MotorVelocity").css( 'color' ) 		== yellow ) {
+				
+				// set parent container to yellow
+				$("div#motor_MotorTemp").parents(".bs-callout").removeClass("bs-callout-success");
+				$("div#motor_MotorTemp").parents(".bs-callout").removeClass("bs-callout-danger");
+				$("div#motor_MotorTemp").parents(".bs-callout").addClass("bs-callout-warning");
+				
+			} else {
+				
+				// set parent container to green
+				$("div#motor_MotorTemp").parents(".bs-callout").removeClass("bs-callout-warning");
+				$("div#motor_MotorTemp").parents(".bs-callout").removeClass("bs-callout-danger");
+				$("div#motor_MotorTemp").parents(".bs-callout").addClass("bs-callout-success");
+			}
+			
+			// pack
+			if( $(".system-variable-name#PackTemp").css( 'color' ) 		== "rgb(255, 0, 0)" || /* red */
+				$(".system-variable-name#PackSOC").css( 'color' ) 		== "rgb(255, 0, 0)" ||
+				$(".system-variable-name#PackBalance").css( 'color' ) 	== "rgb(255, 0, 0)" ) {
+				
+				// set parent container to red
+				$("div#pack_temperature").parents(".bs-callout").removeClass("bs-callout-success");
+				$("div#pack_temperature").parents(".bs-callout").removeClass("bs-callout-warning");
+				$("div#pack_temperature").parents(".bs-callout").addClass("bs-callout-danger");
+				
+			} else if( $(".system-variable-name#PackTemp").css( 'color' ) 		== yellow || /* yellow */
+				$(".system-variable-name#PackSOC").css( 'color' ) 				== yellow ||
+				$(".system-variable-name#PackBalance").css( 'color' ) 			== yellow ) {
+				
+				// set parent container to yellow
+				$("div#pack_temperature").parents(".bs-callout").removeClass("bs-callout-success");
+				$("div#pack_temperature").parents(".bs-callout").removeClass("bs-callout-danger");
+				$("div#pack_temperature").parents(".bs-callout").addClass("bs-callout-warning");
+				
+			} else {
+				
+				// set parent container to green
+				$("div#pack_temperature").parents(".bs-callout").removeClass("bs-callout-warning");
+				$("div#pack_temperature").parents(".bs-callout").removeClass("bs-callout-danger");
+				$("div#pack_temperature").parents(".bs-callout").addClass("bs-callout-success");
+			}
 		} );
 }
 
