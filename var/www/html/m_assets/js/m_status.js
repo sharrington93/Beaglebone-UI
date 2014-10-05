@@ -7,14 +7,14 @@ $( document ).ready(function() {
 
 function updateMessage( messageName ){
 	// send GET request to update all status vars
-	$.get('http://' + serverHost + ':' + serverPort + '/api/message.php?messageName=' + messageName, 
+	$.getJSON('http://' + serverHost + ':' + serverPort + '/api/message.php?messageName=' + messageName, 
 		function(data) { 
 		
 			varName = data.messageName;
 			value = data.messageValue;
 			status = data.status;
 			
-			$("system-variable-value#"+varName).text( value );
+			$(".system-variable-value#"+varName).text( value );
 		
 		} );
 }

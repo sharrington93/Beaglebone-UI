@@ -15,7 +15,7 @@ $requestedMessage = $_GET['messageName'];
 $sql = "SELECT Value
 	FROM Messages
 	WHERE MsgName = \"$requestedMessage\"
-	ORDER BY time ASC
+	ORDER BY time DESC
 	LIMIT 1"; 
 $result = mysqli_query($con ,$sql);
 
