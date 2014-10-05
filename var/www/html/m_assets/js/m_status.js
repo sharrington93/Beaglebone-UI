@@ -6,6 +6,7 @@ $( document ).ready(function() {
   	
   	setInterval(function() {
   		updateAll();
+  		updateVehicleStatus();
   	}, 1000);
 } );
 
@@ -35,6 +36,30 @@ function updateMessage( messageName ){
 			}
 		
 		} );
+}
+
+function updateVehicleStatus( ){
+	// Update the vehicle status variables that trigger popovers (frame fault, HV state, E-stop)
+	$.getJSON('http://' + serverHost + ':' + serverPort + '/api/vehicleStatus.php', 
+		function(data) { 
+			if( data.highVoltage == "True" ){
+				$(".alert-hv").removeClass("hidden");
+			} else {
+				$(".alert-hv").addClass("hidden");
+			}
+			
+			if( data.FrameFault == "True"){
+				$(".alert-framefault").removeClass("hidden");
+			} else {
+				$(".alert-framefault").addClass("hidden");
+			}
+			
+			if( data.EStop == "True"){
+				$(".alert-estop").removeClass("hidden");
+			} else {
+				$(".alert-estop").addClass("hidden");
+			}
+	} );
 }
 
 function updateAll( ){
