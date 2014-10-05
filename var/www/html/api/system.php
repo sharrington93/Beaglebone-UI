@@ -17,7 +17,7 @@ $output = array();
 
 if ( $requestedMessage = "powertrain" ) {
 
-	$variables = array("PhaseAtemp", "BusVoltage", "Motorld", "MotorTemp", "MotorVelocity", "PackTemp", "PackSOC", "PackBalance", "PrechargeCont", "MainCont", "EStop");
+	$variables = array("PhaseAtemp", "BusVoltage", "MotorId", "MotorTemp", "MotorVelocity", "PackTemp", "PackSOC", "PackBalance", "PrechargeCont", "MainCont", "EStop");
 
 	foreach( $variables as $messageName ) {
 		$query = "SELECT Value FROM Messages WHERE MsgName = '" . $messageName . "' ORDER BY time DESC LIMIT 1";
