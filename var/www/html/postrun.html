@@ -18,23 +18,57 @@
     <![endif]-->
   </head>
   <body>
-  	<div class="alert alert-info alert-hv" role="alert">Bike is HV!</div>
+  	<div class="alert alert-info alert-hv hidden" role="alert">Bike is HV!</div>
   	<h2>Powertrain status</h2>
   	<div class="container">
-  		<!-- motor controller -->
+  		<!-- bus voltage -->
   		<div class="row system">
   			<div class="col-xs-2 system-icon-container">
   				<div class="row">
   					<div class="col-xs-3 value-label-vertical rotate">max</div>
-  					<div class="col-xs-9 postrun-value">127.0</div>
+  					<div class="col-xs-9 postrun-value" id="BusVoltage_Current">127.0</div>
   				</div>
   				<div class="row">
   					<div class="col-xs-3 value-label-vertical rotate">avg</div>
-  					<div class="col-xs-9 postrun-value">127.0</div>
+  					<div class="col-xs-9 postrun-value" id="BusVoltage_Avg">127.0</div>
   				</div>
   			</div>
 			<div class="col-xs-8 system-plot">
-				<canvas id="VehicleVelocity" width="253px" height="100"></canvas>
+				<canvas id="BusVoltage" width="253px" height="100"></canvas>
+			</div>
+  		</div>
+  		
+  		<!-- bus current -->
+  		<div class="row system">
+  			<div class="col-xs-2 system-icon-container">
+  				<div class="row">
+  					<div class="col-xs-3 value-label-vertical rotate">max</div>
+  					<div class="col-xs-9 postrun-value" id="MotorId_Current">127.0</div>
+  				</div>
+  				<div class="row">
+  					<div class="col-xs-3 value-label-vertical rotate">avg</div>
+  					<div class="col-xs-9 postrun-value" id="MotorId_Avg">127.0</div>
+  				</div>
+  			</div>
+			<div class="col-xs-8 system-plot">
+				<canvas id="MotorId" width="253px" height="100"></canvas>
+			</div>
+  		</div>
+  		
+  		<!-- motor speed -->
+  		<div class="row system">
+  			<div class="col-xs-2 system-icon-container">
+  				<div class="row">
+  					<div class="col-xs-3 value-label-vertical rotate">max</div>
+  					<div class="col-xs-9 postrun-value" id="MotorVelocity_Current">127.0</div>
+  				</div>
+  				<div class="row">
+  					<div class="col-xs-3 value-label-vertical rotate">avg</div>
+  					<div class="col-xs-9 postrun-value" id="MotorVelocity_Avg">127.0</div>
+  				</div>
+  			</div>
+			<div class="col-xs-8 system-plot">
+				<canvas id="MotorVelocity" width="253px" height="100"></canvas>
 			</div>
   		</div>
   		
