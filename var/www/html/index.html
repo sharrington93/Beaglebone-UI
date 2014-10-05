@@ -31,7 +31,7 @@
   	<h3>Powertrain status</h3>
   	<div class="container">
   		<!-- motor controller -->
-  		<div class="row system">
+  		<div class="row bs-callout bs-callout-success">
   			<div class="col-xs-4 system-icon-container">
   				<div class="row">
   					<div class="col-xs-12 system-icon">
@@ -42,60 +42,53 @@
   					</div>
   				</div>
   			</div>
-				<div class="col-xs-7 system-info">
-					<div id="mc_temperature">
-						<span class="system-variable-name">Temperature: </span>
-						<span class="system-variable-value" id="PhaseATemp">XX</span>
-						<span class="system-variable-value" id="mc_temperature_units"> ºC</span><br>
-					</div>
-					
-					<div id="mc_temperature">
-						<span class="system-variable-name">DC bus voltage: </span>
-						<span class="system-variable-value" id="BusVoltage">XX</span>
-						<span class="system-variable-value" id="mc_temperature_units"> V</span><br>
-					</div>
-					
-					<div id="mc_temperature">
-						<span class="system-variable-name">Phase current: </span>
-						<span class="system-variable-value" id="MotorId">XX</span>
-						<span class="system-variable-value" id="mc_temperature_units"> A</span><br>
-					</div>
+			<div class="col-xs-7 system-info">
+				<div id="mc_temperature">
+					<span class="system-variable-name" id="PhaseAtemp">Temperature: </span>
+					<span class="system-variable-value" id="PhaseAtemp">XX</span>
+					<span class="system-variable-value" id="mc_temperature_units"> ºC</span><br>
 				</div>
-				<div class="col-xs-1 pull-right system-status-indicator" id="mc">
+				<div id="mc_BusVoltage">
+					<span class="system-variable-name" id="BusVoltage">DC bus voltage: </span>
+					<span class="system-variable-value" id="BusVoltage">XX</span>
+					<span class="system-variable-value" id="mc_temperature_units"> V</span><br>
+				</div>			
+				<div id="mc_MotorId">
+					<span class="system-variable-name" id="MotorId">Phase current: </span>
+					<span class="system-variable-value" id="MotorId">XX</span>
+					<span class="system-variable-value" id="mc_temperature_units"> A</span><br>
 				</div>
-  		</div>
-  		
+			</div>
+		</div>
+
   		<!-- motor -->
-  		<div class="row system">
+  		<div class="row bs-callout bs-callout-default">
   			<div class="col-xs-4 system-icon-container">
   				<div class="row">
   					<div class="col-xs-12 system-icon">
-  						<img src="m_assets/img/emrax268_75px.png" alt="Motor icon" class="system-icon" />
+  						<img src="m_assets/img/emrax268_100px.png" alt="Motor icon" class="system-icon" />
   					</div>
   					<div class="col-xs-12 system-title" id="motor">
   						Motor
   					</div>
   				</div>
   			</div>
-				<div class="col-xs-7 system-info">
-					<div id="mc_temperature">
-						<span class="system-variable-name">Temperature: </span>
+			<div class="col-xs-7 system-info">
+				<div id="motor_MotorTemp">
+						<span class="system-variable-name" id="MotorTemp">Temperature: </span>
 						<span class="system-variable-value" id="MotorTemp">XX</span>
 						<span class="system-variable-value" id="MotorTemp_units"> ºC</span><br>
-					</div>
-					
-					<div id="mc_temperature">
-						<span class="system-variable-name">Motor speed: </span>
+					</div>	
+				<div id="motor_MotorVelocity">
+						<span class="system-variable-name" id="MotorVelocity">Motor speed: </span>
 						<span class="system-variable-value" id="MotorVelocity">XX</span>
 						<span class="system-variable-value" id="mc_temperature_units"> rpm</span><br>
 					</div>
-				</div>
-				<div class="col-xs-1 pull-right system-status-indicator" id="motor">
-				</div>
-  		</div>
+			</div>
+		</div>
   
   		<!-- pack -->
-  		<div class="row system">
+  		<div class="row bs-callout bs-callout-default">
   			<div class="col-xs-4 system-icon-container">
   				<div class="row">
   					<div class="col-xs-12 system-icon">
@@ -106,31 +99,27 @@
   					</div>
   				</div>
   			</div>
-				<div class="col-xs-7 system-info">
-					<div id="pack_temperature">
+			<div class="col-xs-7 system-info">
+				<div id="pack_temperature">
 						<span class="system-variable-name">Temperature: </span>
 						<span class="system-variable-value" id="PackTemp">XX</span>
 						<span class="system-variable-value" id="pack_temperature_units"> ºC</span><br>
 					</div>
-					
-					<div id="pack_soc">
-						<span class="system-variable-name">Pack charge: </span>
-						<span class="system-variable-value" id="PackSOC">XX</span>
-						<span class="system-variable-value" id="PackSOC_units"> %</span><br>
-					</div>
-					
-					<div id="pack_sob">
-						<span class="system-variable-name">Balance state: </span>
-						<span class="system-variable-value" id="PackBalance">XX</span>
-						<span class="system-variable-value" id="PackBalance_units"> %</span><br>
-					</div>
+				<div id="pack_soc">
+					<span class="system-variable-name" id="PackSOC">Pack charge: </span>
+					<span class="system-variable-value" id="PackSOC">XX</span>
+					<span class="system-variable-value" id="PackSOC_units"> %</span><br>
+				</div>		
+				<div id="pack_sob">
+					<span class="system-variable-name" id="PackBalance">Balance state: </span>
+					<span class="system-variable-value" id="PackBalance">XX</span>
+					<span class="system-variable-value" id="PackBalance_units"> %</span><br>
 				</div>
-				<div class="col-xs-1 pull-right system-status-indicator" id="pack">
-				</div>
-  		</div>
+			</div>
+		</div>
   		
   		<!-- switching -->
-  		<div class="row system">
+  		<div class="row bs-callout bs-callout-default">
   			<div class="col-xs-4 system-icon-container">
   				<div class="row">
   					<div class="col-xs-12 system-icon">
@@ -143,24 +132,23 @@
   			</div>
 				<div class="col-xs-7 system-info">
 					<div id="switching_precharge">
-						<span class="system-variable-name">Precharge contactor status: </span>
+						<span class="system-variable-name" id="switching_precharge">Precharge status: </span>
 						<span class="system-variable-value" id="switching_precharge">XX</span>
 						<span class="system-variable-value" id="switching_precharge_units"></span><br>
 					</div>
 					
 					<div id="switching_main">
-						<span class="system-variable-name">Main contactor status: </span>
+						<span class="system-variable-name" id="switching_main">Main switch status: </span>
 						<span class="system-variable-value" id="switching_main">XX</span>
 						<span class="system-variable-value" id="switching_main_units"></span><br>
 					</div>
 					
 					<div id="switching_estop">
-						<span class="system-variable-name">Emergency stop status: </span>
+						<span class="system-variable-name" id="switching_estop">E-stop status: </span>
 						<span class="system-variable-value" id="switching_estop">XX</span>
 						<span class="system-variable-value" id="switching_estop_units"></span><br>
 					</div>
 				</div>
-				<div class="col-xs-1 pull-right system-status-indicator" id="switching">
 				</div>
   		</div>
   		

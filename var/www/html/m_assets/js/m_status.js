@@ -2,7 +2,11 @@ $( document ).ready(function() {
 	serverHost = '192.168.7.35';
 	serverPort = '80';
   	// automatically update system status
+  	updateAll();
   	
+  	setInterval(function() {
+  		updateAll();
+  	}, 1000);
 } );
 
 function updateMessage( messageName ){
@@ -15,6 +19,49 @@ function updateMessage( messageName ){
 			status = data.status;
 			
 			$(".system-variable-value#"+varName).text( value );
+			
+			switch( status ){
+				case "Warn":
+					$(".system-variable-name#"+varName).css( 'color', 'yellow' );
+					break;
+					
+				case "Fail":
+					$(".system-variable-name#"+varName).css( 'color', 'red' );
+					break;
+					
+				default:
+					$(".system-variable-name#"+varName).css( 'color', '' );
+					break;
+			}
+		
+		} );
+}
+
+function updateAll( ){
+	// send GET request to update all status vars
+	$.getJSON('http://' + serverHost + ':' + serverPort + '/api/system.php?systemName=powertrain', 
+		function(data) { 
+			for(var i = 0; i < data.length; i++){
+				varName = data[i].messageName;
+				value 	= data[i].messageValue;
+				status 	= data[i].messageStatus;
+	
+				$(".system-variable-value#"+varName).text( value );
+			
+				switch( status ){
+					case "Warn":
+						$(".system-variable-name#"+varName).css( 'color', 'yellow' );
+						break;
+					
+					case "Fail":
+						$(".system-variable-name#"+varName).css( 'color', 'red' );
+						break;
+					
+					default:
+						$(".system-variable-name#"+varName).css( 'color', '' );
+						break;
+				}
+			}
 		
 		} );
 }

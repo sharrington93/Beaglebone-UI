@@ -22,8 +22,8 @@
 }
  */
 
-.container.full-width{
-	padding: 0;
+.container{
+	background-color: rgb(228, 228, 228);
 }
 
 .row.system{
@@ -32,8 +32,8 @@
 
 /* System icon and info blocks */
 .system-icon-container{
-	margin-top: 7px;
-	margin-bottom: 3px;
+	margin: 7px 0px 0px 7px;
+	padding: 0px 0px 0px 0px;
 }
 .system-title{
 	font-size: x-small;
@@ -57,7 +57,7 @@
 
 .system-variable-name{
 	font-weight: bold;
-	display: inline;
+	display: block;
 }
 
 /* Alerts */
@@ -67,4 +67,67 @@
 	font-weight: 500;
 	padding-top: 3px;
 	padding-bottom: 0;
+}
+
+/* Side notes for calling out things
+-------------------------------------------------- */
+ 
+.bs-callout {
+    padding: 10px 8px 10px 0px;
+    margin: 15px 0;
+    border: 1px solid #eee;
+    border-right-width: 7px;
+    border-radius: 3px;
+    background-color: white;
+    
+    box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.13);
+}
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-default {
+    border-right-color: #777;
+}
+.bs-callout-default h4 {
+    color: #777;
+}
+.bs-callout-primary {
+    border-right-color: #428bca;
+}
+.bs-callout-primary h4 {
+    color: #428bca;
+}
+.bs-callout-success {
+    border-right-color: #5cb85c;
+}
+.bs-callout-success h4 {
+    color: #5cb85c;
+}
+.bs-callout-danger {
+    border-right-color: #d9534f;
+}
+.bs-callout-danger h4 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-right-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-right-color: #5bc0de;
+}
+.bs-callout-info h4 {
+    color: #5bc0de;
 }
