@@ -9,19 +9,40 @@ if (mysqli_connect_errno()) {
 }
 // Take in the desired messageName
 $requestedMessage = $_GET['systemName'];
-//echo $requestedMessage;
 
+// Initialize arrays
 $output = array();
+$data = array();
+$powertrainVars = array("PhaseAtemp", "BusVoltage", "Motorld", "MotorTemp", "MotorVelocity", "PackTemp", "PackSOC", "PackBalance", "PrechargeCont", "MainCont", "EStop");
 
 if ( $requestedMessage = "powertrain" ) {
 
-	$variables = ["PhaseAtemp", "BusVoltage", "Motorld", "MotorTemp", "MotorVelocity", "PackTemp", "PackSOC", "PackBalance", "PrechargeCont", "MainCont", "EStop"];
-
-	foreach( $variables as $messageName ) {
-
-		$query = "SELECT Value  FROM System WHERE messageName = ".$messageName";
-		$result =
-		$data = mysqli_get_row($result);
+	foreach( $powertrainVars as $messageName ) {
+		
+		$i++;
+		
+		$query = "SELECT Value  FROM System WHERE messageName = \"$messageName\"";
+		
+		$result = mysqli_query($con, $query);
+		
+		$data[i] = mysqli_fetch_row( $result )[0];
+		
+		$i++;
+		
+	}
+	
+	for($x = 0; $x < count($powertrainVars); $x++) {
+	
+		$output[x] = array( $powertrainVars[x] => $data[x],
+							'Status' => 'Splendid',
+							'Unit' => 'Metric Fuckton');
+	
+	}
+	
+	for($y = 0; $y < count($output); $y++) {
+	
+		echo json_encode($output[y]);
+	
 	}
 
 }
