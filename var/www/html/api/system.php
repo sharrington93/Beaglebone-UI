@@ -17,9 +17,9 @@ $powertrainVars = array("PhaseAtemp", "BusVoltage", "Motorld", "MotorTemp", "Mot
 
 if ( $requestedMessage = "powertrain" ) {
 
+	$i = 0;
+
 	foreach( $powertrainVars as $messageName ) {
-		
-		$i++;
 		
 		$query = "SELECT Value  FROM System WHERE messageName = \"$messageName\"";
 		
@@ -33,17 +33,14 @@ if ( $requestedMessage = "powertrain" ) {
 	
 	for($x = 0; $x < count($powertrainVars); $x++) {
 	
-		$output[x] = array( $powertrainVars[x] => $data[x],
+		$output[x] = array( 'messageName' => $powertrainVars[x],
+							'messageVal' => $data[x],
 							'Status' => 'Splendid',
 							'Unit' => 'Metric Fuckton');
 	
 	}
 	
-	for($y = 0; $y < count($output); $y++) {
-	
-		echo json_encode($output[y]);
-	
-	}
+	echo json_encode($output);
 
 }
 
