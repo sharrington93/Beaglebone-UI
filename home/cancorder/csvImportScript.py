@@ -17,7 +17,7 @@ def toc():
 
 
 #load data file, change path for beaglebone
-file = "/home/cancorder/home/cancorder/NormalData.csv"
+file = "C:\Users\wes\Documents\BuckeyeCurrent\CANCorder-UI\home\cancorder\NormalData.csv"
 
 #create matrix containing data from file
 data = np.loadtxt(file, dtype=float, delimiter=',', skiprows = 1)
@@ -39,7 +39,7 @@ EStop = data[:,11]
 
 #establish connection with database
 
-con = mdb.connect('localhost','root','buckeyes','westest')
+con = mdb.connect('192.168.7.35','dbUser','buckeyes','westest')
 
 
 with con:
@@ -78,12 +78,12 @@ with con:
     #insert values into table
     tic()
     for i in range(0,500):
-    	
-    	#import pdb; pdb.set_trace()
-    	time.sleep(.5)
+        
+        #import pdb; pdb.set_trace()
+        time.sleep(.5)
     
         cur.executemany('''INSERT INTO Messages(time, MsgName, Value)
-                        VALUES(%s,%s,%s)''',
+                VALUES(%s,%s,%s)''',
         [
         (str(datetime.datetime.now()),'PhaseAtemp',str(PhaseAtemp[i])),
         (str(datetime.datetime.now()),'BusVoltage',str(BusVoltage[i])),
