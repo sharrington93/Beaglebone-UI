@@ -31,67 +31,39 @@ $sqlFF = "SELECT Value
 
 // Form a query on each of the retrieved values
 $resultHV = mysqli_query($con ,$sqlHV);
-
 $resultES = mysqli_query($con ,$sqlES);
-
 $resultFF = mysqli_query($con ,$sqlFF);
 
 //Set vals to the respective rows
 $valHV = mysqli_fetch_row( $resultHV )[0];
-
 $valES = mysqli_fetch_row( $resultES )[0];
-
 $valFF = mysqli_fetch_row( $resultFF )[0];
 
 
 // Determine the status of desired variables
 if ( $valHV == 1 ) {
-
-	$msgHV = "OK";
-
+	$msgHV = "True";
 } else if ( $valHV == 0 ) {
-
-	$msgHV = "Warning!";
-
+	$msgHV = "False";
 }
 
 if ( $valES == 1 ) {
-
-	$msgHV = "OK";
-
+	$msgES = "True";
 } else if ( $valES == 0 ) {
-
-	$msgHV = "Warning!";
-
+	$msgES = "False";
 }
 
 if ( $valFF == 1 ) {
-
-	$msgHV = "OK";
-
+	$msgFF = "True";
 } else if ( $valFF == 0 ) {
-
-	$msgHV = "Warning!";
-
+	$msgFF = "False";
 }
  
 // Create multidimensional array
 $reply = array( 
-
-			array('messageName' => 'highVoltage',
-				  'messageValue' => $msgHV,
-				  'Status' => 'Splendid',
-				  'Unit' => 'Volt(s)'),
-				  
-			array('messageName' => 'EStop',
-				  'messageValue' => $msgES,
-				  'Status' => 'Splendid',
-				  'Unit' => 'Emergency'),
-				  
-			array('messageName' => 'FrameFault',
-				  'messageValue' => $msgFF,
-				  'Status' => 'Splendid',
-				  'Unit' => 'Resiliency')
+	"highVoltage" 	=> 	$msgHV,
+	"EStop"			=>	$msgES,
+	"FrameFault"	=>	$msgFF
 		);
 				
 // Required for security checks when running mobile interface cross-domain
