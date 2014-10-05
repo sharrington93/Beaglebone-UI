@@ -11,11 +11,9 @@ if (mysqli_connect_errno()) {
 }
 
 // Retrieve the desired attributes from the MySQL database
-$sqlHV = "SELECT Value
-	FROM Messages
-	WHERE MsgName = 'highVoltage'
-	ORDER BY time DESC
-	LIMIT 1"; 
+$sqlMainContactor = "SELECT Value FROM Messages WHERE MsgName = 'MainCont' ORDER BY time DESC LIMIT 1"; 
+	
+$sqlPrechargeContactor = "SELECT Value FROM Message WHERE MsgName = 'PrechargeCont' ORDER BY time DESC LIMIT 1"; 
 	
 $sqlES = "SELECT Value
 	FROM Messages
@@ -30,23 +28,24 @@ $sqlFF = "SELECT Value
 	LIMIT 1"; 
 
 // Form a query on each of the retrieved values
-$resultHV = mysqli_query($con ,$sqlHV);
+$mainCont 		= mysqli_fetch_row( mysqli_query($con ,$sqlMainContactor) )[0];
+$prechargeCont 	= mysqli_fetch_row( mysqli_query($con ,$sqlPrechargeContactor) )[0];
 $resultES = mysqli_query($con ,$sqlES);
 $resultFF = mysqli_query($con ,$sqlFF);
 
+// check bike HV status
+if( $mainCont > 0 || $prechargeCont > 0 ){
+	$msgHV = "True";
+} else {
+	$msgHV = "False";
+}
+
 //Set vals to the respective rows
-$valHV = mysqli_fetch_row( $resultHV )[0];
 $valES = mysqli_fetch_row( $resultES )[0];
 $valFF = mysqli_fetch_row( $resultFF )[0];
 
 
 // Determine the status of desired variables
-if ( $valHV == 1 ) {
-	$msgHV = "True";
-} else if ( $valHV == 0 ) {
-	$msgHV = "False";
-}
-
 if ( $valES == 1 ) {
 	$msgES = "True";
 } else if ( $valES == 0 ) {
