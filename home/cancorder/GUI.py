@@ -3,6 +3,8 @@ import MySQLdb as mdb
 import sys
 import time
 import thread
+from wx.lib.pubsub import setuparg1
+from wx.lib.pubsub import pub
 
 
 ###init global variables###
@@ -18,7 +20,7 @@ PrechargeContValue = 0
 MainContValue = 0
 EStopValue = 0
 Pause = 0
-
+i=0
 
 
 def serverContact():
@@ -46,8 +48,8 @@ def serverContact():
                         ('MotorTemp','C','5','90','0','110'),
                         ('MotorVelocity','RPM','0','2500','0','3000'),
                         ('PackTemp','C','0','50','0','75'),
-                        ('PackSOC','%','0.25','1','0.05','1'),
-                        ('PackBalance','%','0.75','1','0.6','1')
+                        ('PackSOC','%','25','100','5','100'),
+                        ('PackBalance','%','75','100','60','100')
                         ])
         con.commit()
         
@@ -68,8 +70,9 @@ def serverContact():
         
         
 
-
-        for i in range(0,100):
+        global i
+        for i in range(0,1800):
+            wx.CallAfter(pub.sendMessage,'changei',i)
             #import pdb; pdb.set_trace()
             time.sleep(.5)
             cur.executemany('''INSERT INTO Messages(time, MsgName, Value)
@@ -81,15 +84,15 @@ def serverContact():
                 (str(time.time()*1000),'MotorTemp',str(MotorTempValue)),
                 (str(time.time()*1000),'MotorVelocity',str(MotorVelocityValue)),
                 (str(time.time()*1000),'PackTemp',str(PackTempValue)),
-                (str(time.time()*1000),'PackSOC',str(PackSOCValue/100.0)),
-                (str(time.time()*1000),'PackBalance',str(PackBalanceValue/100.0)),
+                (str(time.time()*1000),'PackSOC',str(PackSOCValue)),
+                (str(time.time()*1000),'PackBalance',str(PackBalanceValue)),
                 (str(time.time()*1000),'PrechargeCont',str(PrechargeContValue)),
                 (str(time.time()*1000),'MainCont',str(MainContValue)),
                 (str(time.time()*1000),'EStop',str(EStopValue))
                 ]) 
             con.commit()
-            #while Pause == 1:
-                #time.sleep(.1)
+            while Pause == 1:
+                time.sleep(.1)
 
 ########################################################################################
 def dispGUI():
@@ -105,9 +108,16 @@ class MainFrame(wx.Frame):
         wx.Frame.__init__(self, None, title = 'CANSim')
         
         self.InitUI()
-        
+
+    def changeDisp(self, message):
+        self.cycles.SetLabel(str(message.data))
+
     def InitUI(self):
+        pub.subscribe(self.changeDisp, ('changei'))
         MainPanel = wx.Panel(self)
+
+        #display cycles
+        self.cycles = wx.StaticText(MainPanel, label=str(i), pos=(830,500))
 
         #Create Vertical Slider for BusVoltage
         BusVoltage = wx.Slider(MainPanel, value=375, minValue=150, maxValue=550, pos=(50, 50), size=(-1, 250), style=wx.SL_VERTICAL)
