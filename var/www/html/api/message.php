@@ -12,11 +12,7 @@ $requestedMessage = $_GET['messageName'];
 //echo $requestedMessage;
 
 // Retrieve the desired attributes from the MySQL database
-$sql = "SELECT Value
-	FROM Messages
-	WHERE MsgName = \"$requestedMessage\"
-	ORDER BY time DESC
-	LIMIT 1"; 
+$sql = "SELECT Value FROM Messages WHERE MsgName = \"$requestedMessage\" ORDER BY time DESC LIMIT 1"; 
 $result = mysqli_query($con ,$sql);
 
 $val = mysqli_fetch_row( $result )[0];
