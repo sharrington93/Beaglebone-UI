@@ -19,6 +19,21 @@ function updateMessage( messageName ){
 		} );
 }
 
+function updateAll( ){
+	// send GET request to update all status vars
+	$.getJSON('http://' + serverHost + ':' + serverPort + '/api/system.php?systemName=powertrain', 
+		function(data) { 
+			for(var i = 0; i < data.length; i++){
+				varName = data[i].messageName;
+				value 	= data[i].messageValue;
+				status 	= data[i].status;
+	
+				$(".system-variable-value#"+varName).text( value );
+			}
+		
+		} );
+}
+
 function setSystemStatus( system, status ){
 	system = system.toLowerCase();
 	switch( status ){
