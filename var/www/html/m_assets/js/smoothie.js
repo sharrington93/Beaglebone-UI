@@ -162,6 +162,14 @@
     }
   };
 
+TimeSeries.prototype.average = function() {
+		var sum = 0;
+		for( var i = 0; i < this.data.length; i++ ){
+			sum += parseInt(this.data[i][1], 10);
+		}
+		var avg = sum/this.data.length;
+		return avg;
+  	};
   /**
    * Adds a new data point to the <code>TimeSeries</code>, preserving chronological order.
    *
