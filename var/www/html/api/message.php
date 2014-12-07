@@ -12,19 +12,19 @@ $requestedMessage = $_GET['messageName'];
 //echo $requestedMessage;
 
 // Retrieve the desired attributes from the MySQL database
-$sql = "SELECT Value
-	FROM Messages
-	WHERE MsgName = \"$requestedMessage\"
-	ORDER BY time ASC
-	LIMIT 1"; 
+$sql = "SELECT Value FROM Messages WHERE MsgName = \"$requestedMessage\" ORDER BY time DESC LIMIT 1"; 
 $result = mysqli_query($con ,$sql);
 
 $val = mysqli_fetch_row( $result )[0];
 
-$reply = array( $requestedMessage => $val,
+$reply = array( 'messageName' => $requestedMessage,
+				'messageValue' => $val,
 				'status' => 'fail',
 				'unit' => 'fun' );
 				
+// Required for security checks when running mobile interface cross-domain
+header('Access-Control-Allow-Origin: *');			
+	
 echo json_encode($reply);
 
 // Get the number of rows in the database
