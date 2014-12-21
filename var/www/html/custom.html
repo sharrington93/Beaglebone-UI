@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Custom</title>
+
+		<!-- Bootstrap -->
+		<link href="m_assets/css/bootstrap.min.css" rel="stylesheet">
+		<link href="m_assets/css/m_styles.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div>
+				<h3>Custom Variable Group</h3>
+				<p>
+					If you would like to save the particular grouping of variables press "save" after you are done selecting all of the variables you wish to display.
+				</p>
+			</div>
+			<ul class="list" >
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 1
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 2
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 3
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 4
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 5
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 6
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 7
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 8
+				</li>
+			</ul>
+		</div>
+		<script>
+			function changeClr(elmnt) {
+				if(elmnt.style.color != 'green'){
+					elmnt.style.color = 'green'
+				} else if(elmnt.style.color == 'green'){
+					elmnt.style.color = 'black'
+				}
+			}
+		</script>
+		<script>
+			function breakList(numOfLists, list){
+				var listLength = list.find("li").size();
+				var numInRow = Math.ceil(listLength / numOfLists);
+				for (var i=0;i<numOfLists;i++){
+					var listItems = list.find("li").slice(0, numInRow);
+					var newList = $('<ul/>').append(listItems);
+					$("body").append(newList);
+				}
+			}	
+			breakList(2, $(".list"));
+		</script>
+		<script src="m_assets/js/jquery-1.11.1.min.js"></script>
+		<script src="m_assets/js/bootstrap.min.js"></script>
+		<script src="m_assets/js/m_status.js"></script>
+	</body>
+</html>
