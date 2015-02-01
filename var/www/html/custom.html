@@ -7,8 +7,12 @@
 		<title>Custom</title>
 
 		<!-- Bootstrap -->
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<link href="m_assets/css/bootstrap.min.css" rel="stylesheet">
 		<link href="m_assets/css/m_styles.css" rel="stylesheet">
+
+		<!-- Notify CSS -->
+		<link href="css/bootstrap-notify.css" rel="stylesheet">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,12 +22,14 @@
 		<![endif]-->
 	</head>
 	<body>
+		<!-- List of all the CAN Signals -->
 		<div class="container-fluid">
 			<div>
 				<h3>Custom Variable Group</h3>
 				<p>
 					If you would like to save the particular grouping of variables press "save" after you are done selecting all of the variables you wish to display.
 				</p>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SaveVars">Save Variable Grouping</button>
 			</div>
 			<ul class="list" >
 				<li type="button" class="btn btn-default" onclick="changeClr(this)">
@@ -52,6 +58,46 @@
 				</li>
 			</ul>
 		</div>
+		<!-- Modal -->
+		<div id="SaveVars" class="modal fade bs-example-modal-sm" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Save Page</h4>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="recipient-name" class="control-label">
+									Name:
+								</label>
+								<input type="text" class="form-control" id="recipient_name">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel
+						</button>
+						<button type="button" class="btn btn-primary" onclick="newCustomPage()" data-dismiss="modal">
+							Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Make new page in index from custom set of variables -->
+		<script>
+			function newCustomPage(){
+				var btn = document.createElement("button");
+				var t = document.createTextNode(recipient_name);
+				btn.appendChild(t);
+				document.body.appendChild(btn);
+			}
+		</script>
+		<!-- Function to change color of variables -->
 		<script>
 			function changeClr(elmnt) {
 				if(elmnt.style.color != 'green'){
@@ -61,6 +107,7 @@
 				}
 			}
 		</script>
+		<!-- This isn't implemented but it might be important... so it stays -->
 		<script>
 			function breakList(numOfLists, list){
 				var listLength = list.find("li").size();
