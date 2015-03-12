@@ -6,9 +6,9 @@ mkdir -p ~/tmp
 cd ~/tmp
 rm master.zip
 rm -R CANCorder-UI-master
-wget https://github.com/BuckeyeCurrent/CANCorder-UI/archive/master.zip
-unzip CANCorder-UI-master.zip
-sudo rsync -a CANCorder-UI-master/ /
+wget https://github.com/BuckeyeCurrent/CANCorder-UI/archive/v1-dev.zip
+unzip CANCorder-UI-1-dev.zip
+sudo rsync -a CANCorder-UI-1-dev/ /
 
 sudo /etc/init.d/apache2 restart
 sudo /etc/init.d/mysql restart
