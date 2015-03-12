@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Custom</title>
+
+		<!-- Bootstrap -->
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<link href="m_assets/css/bootstrap.min.css" rel="stylesheet">
+		<link href="m_assets/css/m_styles.css" rel="stylesheet">
+
+		<!-- Notify CSS -->
+		<link href="css/bootstrap-notify.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- List of all the CAN Signals -->
+		<div class="container-fluid">
+			<div>
+				<h3>Custom Variable Group</h3>
+				<p>
+					If you would like to save the particular grouping of variables press "save" after you are done selecting all of the variables you wish to display.
+				</p>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SaveVars">Save Variable Grouping</button>
+			</div>
+			<ul class="list" >
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 1
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 2
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 3
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 4
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 5
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 6
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 7
+				</li>
+				<li type="button" class="btn btn-default" onclick="changeClr(this)">
+					Variable 8
+				</li>
+			</ul>
+		</div>
+		<!-- Modal -->
+		<div id="SaveVars" class="modal fade bs-example-modal-sm" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Save Page</h4>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="recipient-name" class="control-label">
+									Name:
+								</label>
+								<input type="text" class="form-control" id="recipient_name">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Cancel
+						</button>
+						<button type="button" class="btn btn-primary" onclick="newCustomPage()" data-dismiss="modal">
+							Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Make new page in index from custom set of variables -->
+		<script>
+			function newCustomPage(){
+				var btn = document.createElement("button");
+				var t = document.createTextNode(recipient_name);
+				btn.appendChild(t);
+				document.body.appendChild(btn);
+			}
+		</script>
+		<!-- Function to change color of variables -->
+		<script>
+			function changeClr(elmnt) {
+				if(elmnt.style.color != 'green'){
+					elmnt.style.color = 'green'
+				} else if(elmnt.style.color == 'green'){
+					elmnt.style.color = 'black'
+				}
+			}
+		</script>
+		<!-- This isn't implemented but it might be important... so it stays -->
+		<script>
+			function breakList(numOfLists, list){
+				var listLength = list.find("li").size();
+				var numInRow = Math.ceil(listLength / numOfLists);
+				for (var i=0;i<numOfLists;i++){
+					var listItems = list.find("li").slice(0, numInRow);
+					var newList = $('<ul/>').append(listItems);
+					$("body").append(newList);
+				}
+			}	
+			breakList(2, $(".list"));
+		</script>
+		<script src="m_assets/js/jquery-1.11.1.min.js"></script>
+		<script src="m_assets/js/bootstrap.min.js"></script>
+		<script src="m_assets/js/m_status.js"></script>
+	</body>
+</html>
