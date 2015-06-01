@@ -1,12 +1,5 @@
 <?php // Establish connection to MySQL database $con = 
 
-$con = mysqli_connect("localhost","root","buckeyes","westest");
-// Check the connection - not really necessary, but fuck it why not
-if (mysqli_connect_errno()) {
-	
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	
-}
 // Take in the desired messageName
 $requestedMessage = $_GET['systemName'];
 
@@ -15,6 +8,29 @@ header('Access-Control-Allow-Origin: *');
 
 $output = array();
 
+if ( $requestedMessage = "batteries" ) {
+	$variables = array();
+	for ($i = 1; $i < 109; $i++) {
+		$signalName = "Cell" . $i . "VoltageAndState";
+		$variables[] = $signalName;
+	}
+	
+	foreach( $variables as $messageName) {
+		$filename = "/home/cancorder/data/" . $messageName;
+		$fileHandle = fopen($filename, "rb");
+		$binaryResult = fread($fileHandle, filesize($filename));
+		fclose($fileHandle);
+		
+		$result = unpack("d*", $binaryResult);
+		$output[] = array(  "MessageName" 	=> $messageName
+							"MessageTime"	=> $result[1]
+							"MessageValue" 	=> $result[2] );
+		
+		echo json_encode($output);
+	}
+}
+
+// Outdated... DO NOT CALL
 if ( $requestedMessage = "powertrain" ) {
 
 	$variables = array("PhaseAtemp", "BusVoltage", "MotorId", "MotorTemp", "MotorVelocity", "PackTemp", "PackSOC", "PackBalance", "PrechargeCont", "MainCont", "EStop");
@@ -65,9 +81,4 @@ if ( $requestedMessage = "powertrain" ) {
 	echo json_encode($output);
 
 }
-
-// Free the result set
-mysql_free_result($result);
-// Close the connection
-mysql_close($con);
 ?>
